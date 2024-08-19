@@ -7,7 +7,7 @@
     <title>Livewire basics</title>
 </head>
 <body>
-Hello world!
 <livewire:hello-world />
+<livewire:counter />
 </body>
 </html>
