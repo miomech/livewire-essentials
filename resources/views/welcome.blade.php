@@ -8,5 +8,6 @@
 </head>
 <body>
 Hello world!
+<livewire:hello-world />
 </body>
 </html>
