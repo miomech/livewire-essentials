@@ -1,4 +1,5 @@
 <div>
+    <livewire:create-post/>
     <h2>Posts:</h2>
     <table>
         <thead>

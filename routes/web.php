@@ -14,5 +14,5 @@ Route::get('/todos', Todos::class);
 
 Route::get('/counter', Counter::class);
 
-Route::get('/showPosts', ShowPosts::class);
+Route::get('/show-posts', ShowPosts::class);
 
