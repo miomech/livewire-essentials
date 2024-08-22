@@ -31,7 +31,7 @@ class CreatePost extends Component
             'title' => $this->title,
             'content' => $this->content
         ]);
-        $this->redirect('/show-posts');
+        $this->redirect('/show-posts', navigate: true);
 
     }
 

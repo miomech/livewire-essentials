@@ -8,15 +8,15 @@
 </head>
 <body>
 <div>
-    <a href="/">All</a>
-    <a href="/todos">
+    <a wire:navigate href="/">All</a>
+    <a wire:navigate href="/todos">
         @if(request()->is('todos'))
             <strong>Todos</strong>
         @else
             Todos
         @endif
     </a>
-    <a href="/counter">
+    <a wire:navigate href="/counter">
         @if(request()->is('counter'))
             <strong>Counter</strong>
         @else
