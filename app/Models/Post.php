@@ -10,4 +10,17 @@ class Post extends Model
     protected $guarded = [];
 
     use HasFactory;
+
+    protected function casts(): array
+    {
+        return [
+            'archived_at' => 'datetime',
+        ];
+    }
+
+    public function archive(): void
+    {
+        $this->archived_at = now();
+        $this->save();
+    }
 }
