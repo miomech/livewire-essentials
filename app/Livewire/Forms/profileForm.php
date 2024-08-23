@@ -22,7 +22,9 @@ class profileForm extends Form
     public string $username = '';
     public string $bio = '';
 
-    public bool $receivesEmails = false;
+    public bool $receiveEmails = false;
+    public bool $receiveUpdates = false;
+    public bool $receiveOffers = false;
 
     public function rules(): array
     {
@@ -36,7 +38,9 @@ class profileForm extends Form
         $this->user = $user;
         $this->username = $this->user->username;
         $this->bio = $this->user->bio;
-        $this->receivesEmails = $this->user->receive_emails;
+        $this->receiveEmails = $this->user->receive_emails;
+        $this->receiveUpdates = $this->user->receive_updates;
+        $this->receiveOffers = $this->user->receive_offers;
     }
 
     public function update(): void
@@ -44,7 +48,9 @@ class profileForm extends Form
         $this->validate();
         $this->user->username = $this->username;
         $this->user->bio = $this->bio;
-        $this->user->receive_emails = $this->receivesEmails;
+        $this->user->receive_emails = $this->receiveEmails;
+        $this->user->receive_updates = $this->receiveUpdates;
+        $this->user->receive_offers = $this->receiveOffers;
         $this->user->save();
     }
 }

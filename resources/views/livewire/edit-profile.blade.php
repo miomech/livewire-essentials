@@ -49,10 +49,27 @@
 
                 <div class="flex gap-6">
                     <div class="flex items-center gap-2">
-                        <input wire:model.boolean="form.receivesEmails" type="radio" name="receive_emails" value="true">Yes
+                        <input wire:model.boolean="form.receiveEmails" type="radio" name="receive_emails" value="true">Yes
                     </div>
                     <div class="flex items-center gap-2">
-                        <input wire:model.boolean="form.receivesEmails" type="radio" name="receive_emails" value="false">No
+                        <input wire:model.boolean="form.receiveEmails" type="radio" name="receive_emails" value="false">No
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset x-show="$wire.form.receiveEmails" class="flex flex-col gap-2">
+                <div>
+                    <legend class="font-medium text-slate-700 text-base">Email type:</legend>
+                </div>
+
+                <div class="flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <input wire:model="form.receiveUpdates" type="checkbox" name="receive_emails" class="rounded">
+                        General Updates
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input wire:model="form.receiveOffers" type="checkbox" name="receive_emails" class="rounded">
+                        Marketing Offers
                     </div>
                 </div>
             </fieldset>
