@@ -13,6 +13,8 @@ class EditProfile extends Component
     public string $username = '';
     public string $bio = '';
 
+    public bool $showSuccessIndicator = false;
+
     public function mount(): void
     {
         $this->user = User::find(1);
@@ -25,6 +27,10 @@ class EditProfile extends Component
         $this->user->username = $this->username;
         $this->user->bio = $this->bio;
         $this->user->save();
+
+        sleep(1);
+
+        $this->showSuccessIndicator = true;
     }
 
     public function render(): View
