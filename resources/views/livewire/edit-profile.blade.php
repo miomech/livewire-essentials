@@ -6,8 +6,20 @@
             <div class="flex flex-col gap-2">
                 <h3 class="font-medium text-slate-700 text-base">Username</h3>
 
-                <input wire:model="username" class="px-3 py-2 border border-slate-300 rounded-lg"
-                       placeholder="Username...">
+                <input wire:model.blur="username"
+                       placeholder="Username..."
+                       @class([
+                            'px-3 py-2 border-slate-300 rounded-lg',
+                            'border border-slate-300' => $errors->missing('username'),
+                            'border-2 border-red-500' => $errors->has('username')
+                        ])
+                >
+
+                @error('username')
+                <p class="text sm text-red-500">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
 
             <div class="flex flex-col gap-2">
@@ -40,6 +52,7 @@
             x-show="$wire.showSuccessIndicator"
             x-transition.out.opacity.duration.2000ms
             x-effect="if($wire.showSuccessIndicator) setTimeout(() => $wire.showSuccessIndicator = false, 3000)"
+            wire:target="save"
             class="flex justify-end pt-4"
         >
             <div class="flex gap-2 items-center text-green-500 text-sm font-medium">
