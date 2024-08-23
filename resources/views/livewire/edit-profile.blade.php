@@ -4,21 +4,30 @@
 
         <form wire:submit="save" class="min-w-[30rem] flex flex-col gap-6 bg-white rounded-lg shadow p-6">
             <div class="flex flex-col gap-2">
-                <h3 class="font-medium text-slate-700 text-base">Username</h3>
+                <label for="username" class="font-medium text-slate-700 text-base">Username</label>
 
-                <input wire:model.blur="form.username"
-                       placeholder="Username..."
-                       @class([
-                            'px-3 py-2 border-slate-300 rounded-lg',
-                            'border border-slate-300' => $errors->missing('form.username'),
-                            'border-2 border-red-500' => $errors->has('form.username')
-                        ])
+                {{-- aria-label and aria-labled by are commone ways to add screen reader context --}}
+                <input
+                    wire:model.blur="form.username"
+                    id="username"
+                    {{--  aria-label="username" --}}
+                    placeholder="Username..."
+                    @class([
+                         'px-3 py-2 border-slate-300 rounded-lg',
+                         'border border-slate-300' => $errors->missing('form.username'),
+                         'border-2 border-red-500' => $errors->has('form.username')
+                     ])
+
+                    {{-- aria-invalid is used to indicate that the input has an error --}}
+                    {{-- this is useful to let screen reader users know if there is an error on the input --}}
+                    @error('form.username')
+                    aria-invalid="true"
+                    aria-description="{{ $message }}"
+                    @enderror
                 >
 
                 @error('form.username')
-                <p class="text sm text-red-500">
-                    {{ $message }}
-                </p>
+                <p class="text sm text-red-500" aria-live="assertive">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -54,6 +63,8 @@
             x-effect="if($wire.showSuccessIndicator) setTimeout(() => $wire.showSuccessIndicator = false, 3000)"
             wire:target="save"
             class="flex justify-end pt-4"
+            {{-- Read out the contents of the success indictator when the form is submitted --}}
+            aria-live="polite"
         >
             <div class="flex gap-2 items-center text-green-500 text-sm font-medium">
                 Profile updated successfully
