@@ -1,4 +1,4 @@
-<tr @if($post->archived_at) style="background-color: gray" @endif >
+<tr @class(['bg-gray-200' => $post->archived_at])>>
     <td>{{$post->title}}</td>
     <td>{{$post->content}}</td>
     <td>{{$post->archived?->toFormattedDateString()}}</td>
