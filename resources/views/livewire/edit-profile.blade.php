@@ -31,12 +31,31 @@
                 @enderror
             </div>
 
+            <select class="px-3 py-2 rounded-lg border border-slate-300">
+                <option value="foo">Foo</option>
+            </select>
+
             <div class="flex flex-col gap-2">
                 <h3 class="font-medium text-slate-700 text-base">Bio</h3>
 
                 <textarea wire:model="form.bio" rows="4" class="px-3 py-2 border border-slate-300 rounded-lg"
                           placeholder="A little bit about yourself..."></textarea>
             </div>
+
+            <fieldset class="flex flex-col gap-2">
+                <div>
+                    <legend class="font-medium text-slate-700 text-base">Receive emails?</legend>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex items-center gap-2">
+                        <input wire:model.boolean="form.receivesEmails" type="radio" name="receive_emails" value="true">Yes
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input wire:model.boolean="form.receivesEmails" type="radio" name="receive_emails" value="false">No
+                    </div>
+                </div>
+            </fieldset>
 
             <div class="flex">
                 <button type="submit"

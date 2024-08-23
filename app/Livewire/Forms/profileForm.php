@@ -12,7 +12,7 @@ class profileForm extends Form
     public User $user;
     // The 'required' rule is applied to the username property
     // The 'unique' rule is applied to the username property, and the 'users' table is specified as the table to check for uniqueness
-    // The issue is php attributes only support strings and we need to use the 'unique' rule with the 'users' table while ignoring the current user
+    // The issue is php attributes only support strings, we need to use the 'unique' rule with the 'users' table while ignoring the current user
     // Attribute validators are best suited for simple validation rules
     //    #[Validate('required|unique:users')]
 
@@ -21,6 +21,8 @@ class profileForm extends Form
     #[Validate]
     public string $username = '';
     public string $bio = '';
+
+    public bool $receivesEmails = false;
 
     public function rules(): array
     {
@@ -34,6 +36,7 @@ class profileForm extends Form
         $this->user = $user;
         $this->username = $this->user->username;
         $this->bio = $this->user->bio;
+        $this->receivesEmails = $this->user->receive_emails;
     }
 
     public function update(): void
@@ -41,6 +44,7 @@ class profileForm extends Form
         $this->validate();
         $this->user->username = $this->username;
         $this->user->bio = $this->bio;
+        $this->user->receive_emails = $this->receivesEmails;
         $this->user->save();
     }
 }
