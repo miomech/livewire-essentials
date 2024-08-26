@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\Country;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
@@ -26,13 +27,13 @@ class profileForm extends Form
     public bool $receiveUpdates = false;
     public bool $receiveOffers = false;
 
-    public string $country = '';
+    public Country $country;
 
     public function rules(): array
     {
         return [
             'username' => ['required', Rule::unique('users')->ignore($this->user->id)],
-            'country' => ['required'],
+            'country' => ['required',Rule::enum(Country::class)],
         ];
     }
 
